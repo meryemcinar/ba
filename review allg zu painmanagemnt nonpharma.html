@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006275.pub3/epdf/full -->
+<html style="width: 100%; height: 100%; overflow: hidden; background-color: rgb(211, 214, 220);"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script type="text/javascript" src="./full_files/3809944486"></script><script src="./full_files/nr-1071.min.js.Download"></script><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script><noscript>
+	<meta http-equiv="refresh" content="0;url=/cdsr/doi/10.1002/14651858.CD006275.pub3/media/CDSR/CD006275/CD006275.pdf">
+</noscript>
+<!--[if IE 9]>
+<meta http-equiv="refresh" content="0;url=/cdsr/doi/10.1002/14651858.CD006275.pub3/media/CDSR/CD006275/CD006275.pdf">
+<![endif]-->
+<meta name="DOI" content="10.1002/14651858.CD006275.pub3">
+<meta name="PDF_URL" content="/cdsr/doi/10.1002/14651858.CD006275.pub3/media/CDSR/CD006275/CD006275.pdf">
+
+<meta name="ACCESS_ENDPOINT" content="https://cochranelibrary-wiley.com/readcube">
+
+<script type="text/javascript" src="./full_files/jquery-1.12.3.min.js.Download"></script>
+<script type="text/javascript" src="./full_files/js.cookie.js.Download"></script>
+<script type="text/javascript" src="./full_files/ui.polyfill.js.Download"></script>
+<script type="text/javascript" src="./full_files/reporting.js.Download"></script>
+<script type="text/javascript" src="./full_files/epdf.js.Download"></script><script async="" type="text/javascript" src="./full_files/epdf.f3fd44e1.js.Download"></script>
+<script type="text/javascript">
+    window.dataLayer = {};
+
+    /**
+     * Merge the contents of two or more objects together into a new object.
+     *
+     * @param boolean (optional) whether or not this should be a deep merge, defaults to false
+     * @param Object... any number of objects to merge together
+     * @returns Object a new object with the contents of two or more objects merged together
+     */
+    var xtend = function () {
+
+        // Variables
+        var extended = {};
+        var deep = false;
+        var i = 0;
+        var length = arguments.length;
+
+        // Check if a deep merge
+        if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+            deep = arguments[0];
+            i++;
+        }
+
+        // Merge the object into the extended object
+        var merge = function (obj) {
+            for ( var prop in obj ) {
+                if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+                    // If deep merge and property is an object, merge properties
+                    if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
+                        extended[prop] = xtend( true, extended[prop], obj[prop] );
+                    } else {
+                        extended[prop] = obj[prop];
+                    }
+                }
+            }
+        };
+
+        // Loop through each object and conduct a merge
+        for ( ; i < length; i++ ) {
+            var obj = arguments[i];
+            merge(obj);
+        }
+
+        return extended;
+
+    };
+
+</script>
+<script type="text/javascript">
+    {
+var o = {"database":"CDSR","article":{"availableLanguage":["en","hr","de","pt"],"languageCode":"","accessStatus":"delayed-free","doi":"10.1002/14651858.CD006275.pub3","title":"Non\\u2010pharmacological management of infant and young child procedural pain","firstPublishedDate":"Dec 2, 2015 12:00:00 AM","isCurrentVersion":true,"editorialGroup":"Cochrane Pain, Palliative and Supportive Care Group","availableParts":["PDF Full","PDF Standard","PDF Abstract","HTML","Comments","Information","References","Stats","Related Content"]}};
+window.dataLayer = xtend(true, window.dataLayer, o);
+}
+
+</script>
+<script type="text/javascript">
+    {
+var o = {"page":{"pageType":"Article ePDF","siteSection":"Content","languageCode":"en"}};
+window.dataLayer = xtend(true, window.dataLayer, o);
+}
+
+</script>
+<script type="text/javascript">
+    {
+var o = {"auth":{"roles":["Guest"],"customerIds":[119027234],"individualId":""}};
+window.dataLayer = xtend(true, window.dataLayer, o);
+}
+
+</script>
+
+<script>
+    setTimeout(function() {
+        if (window.readcube) return;
+        var metas = document.getElementsByTagName('meta');
+        for (i = 0; i < metas.length; i++) {
+            if (metas[i].getAttribute('name') == 'PDF_URL') {
+                location.href = metas[i].getAttribute('content');
+                break;
+            }
+        }
+    }, 10e3);
+</script>
+<script src="./full_files/satelliteLib-b0f13d7a13ebe8b0b1b00a9f0730a084926e292f.js.Download"></script><script src="./full_files/satellite-5b6917f364746d19960013a0.js.Download"></script><script src="./full_files/ga.js.Download"></script>
+<script type="text/javascript">if(window._satellite){_satellite.pageBottom()};</script><script src="./full_files/s-code-contents-a53e5a9f77a7524e48b770b81cbc141a5eed3153.js.Download"></script>
+</head>
+<body style="width: 100%; height: 100%; overflow: hidden;">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"errorBeacon":"bam.nr-data.net","licenseKey":"3809944486","agent":"","beacon":"bam.nr-data.net","applicationTime":315,"applicationID":"75326258","transactionName":"YwdbNxMADUoEAkJRWVpNahcTFBdKJAJCUVlaTVoMDE8PUAMERFlPGhJWERUADxcEAkJRWVpMdQIYDhZNJAJCUVla","queueTime":0}</script>
+<div class="rc-reader-bg" style="position: fixed; top: 0%; left: 0px; width: 100%; height: 100%; visibility: visible; bottom: 0%; z-index: 2100000000; background: rgb(211, 214, 220);"><iframe allowtransparency="true" class="rc-reader-frame" src="./full_files/10.1002%2F14651858.CD006275.html" style="position: absolute; top: 0%; left: 0px; width: 100%; height: 100%; border: none; outline: none; visibility: visible; bottom: 0%;"></iframe></div></body><iframe src="./full_files/track_epdf.3307bb36.html" style="position: absolute; visibility: hidden; width: 0px; height: 0px;"></iframe></html>

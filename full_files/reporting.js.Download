@@ -1,0 +1,30 @@
+scolaris=window.scolaris||{};scolaris.reportingEvents={searchtitletext:'searchtitletext',deniednolicense:'deniednolicense',tochighlights:'tochighlights',fulltextpdfstandard:'fulltextpdfstandard',fulltextpdfabstract:'fulltextpdfabstract',tocother:'tocother',fulltexthtmlreg:'fulltexthtmlreg',loi:'loi',searchtitlemesh:'searchtitlemesh',articleselect:'articleselect',hubhome:'hubhome',abstract:'abstract',fulltextpdfreg:'fulltextpdfreg',tocsubject:'tocsubject',commentary:'commentary',titlehome:'titlehome',accessdenied:'accessdenied',ppv:'ppv'};scolaris.reporting=(function($,events){'use strict';var reporting,sidReportingCookieName='SID_REP';function init(){if(inIframe()){return;}
+onLoadEvents();bindHandlers();searchResultsRefreshed();}
+function inIframe(){try{return window.self!==window.top;}catch(e){return true;}}
+function bindHandlers(){var url=location.href,doi=$('meta[name="dc.identifier"][scheme="DOI"]').attr('content'),resultClick=JSON.parse(sessionStorage.getItem('resultClick'))||false;sessionStorage.removeItem('resultClick');$('.btn-link.browse-by-list-item-link, .searchByBtn').on('click',function(){push(events.searchtitletext);});$('.advanced-search-run-search').on('click',function(){send(events.searchtitletext);});$(document).on('click','.search-manager-result',function(){send(events.searchtitletext);});$('.search-result-counts.mesh-column .view-results').on('click',function(){send(events.searchtitlemesh);});if($('.editorial.abstract').length>0){send(events.commentary,{doi:doi});}
+if($('.special-collections-section').length>0){send(events.tocother,{doi:doi});}
+if(url.match(/.+(supplements|cca)$/ig)){send(events.tocother);}
+if((url.includes('cdsr/doi/')&&url.includes('/abstract'))||(url.includes('cdsr/doi/')&&(dataLayer.article.accessStatus==='none'||dataLayer.article.accessStatus===''))){send(events.abstract,{doi:doi,click:resultClick});}
+if((url.includes('cdsr/doi/')&&$('.editorial.abstract').length===0&&!url.includes('/abstract'))||url.includes('central/doi/')||url.includes('cca/doi/')){if(dataLayer.article.accessStatus!=='none'&&dataLayer.article.accessStatus!==''){send(events.fulltexthtmlreg,{doi:doi,click:resultClick});}}
+if((url.includes('cdsr/doi/')&&$('.editorial.abstract').length===0)){if(dataLayer.article.accessStatus==='none'||dataLayer.article.accessStatus===''){send(events.accessdenied,{doi:doi,click:resultClick});}}
+$('.main-nav-wrapper a[href*="table-of-contents"], '+
+'.mobile-navigation a[href*="table-of-contents"]').on('click',function(){push(events.loi);});if($('.homepage-main-content-wrapper').length>0){send(events.hubhome);}
+$('.supplement-pdf').on('click',function(){send(events.fulltextpdfreg,{doi:doi});});$('.main-nav-wrapper a[href*="browse-by-review-group"], '+
+'.mobile-navigation a[href*="browse-by-review-group"], '+
+'.main-nav-wrapper a[href*="browse-by-topic"], '+
+'.mobile-navigation a[href*="browse-by-topic"]').on('click',function(){push(events.tocsubject);});$(document).on('click','.search-results-item-image, .result-title, .browse-issues-results-explanatory .search-results-item a:not(.show-preview-btn)',function(event){var href=$(event.target).prop('href');if(href.includes('.pdf')){send(events.fulltextpdfreg,{doi:doi,click:true});}
+else{sessionStorage.setItem('resultClick',true);}});}
+function searchResultsRefreshed(){var $activeTab=$('.search-results .tab.active'),searchResultsEvents={'cca':events.titlehome,'specialcollections':events.loi,'editorial':events.tochighlights},contentType;if($activeTab.length>0){contentType=$activeTab.data('type');if(contentType in searchResultsEvents){send(searchResultsEvents[contentType]);}}}
+function save(){sessionStorage.setItem('reporting',JSON.stringify(reporting));}
+function push(event){if($.inArray(event,reporting)===-1){reporting.push(event);save();}}
+function onLoadEvents(){var doi=$('meta[name="dc.identifier"][scheme="DOI"]').attr('content');reporting=JSON.parse(sessionStorage.getItem('reporting'))||[];for(var i=0,n=reporting.length;i<n;i+=1){send(reporting[i],{doi:doi});}
+reporting.length=0;save();}
+function send(eventName,eventData){eventData=eventData||{};eventData.sidrep=Cookies.get(sidReportingCookieName);$.ajax({method:'POST',dataType:'json',contentType:"application/json;charset=utf-8",url:'/scolaris-auth/report/'+eventName,data:JSON.stringify(eventData)});}
+return{init:init,searchResultsRefreshed:searchResultsRefreshed,send:send}}(jQuery,scolaris.reportingEvents));jQuery(document).on('ready',function(){'use strict';scolaris.reporting.init();});jQuery(document).on('scolarissearchresultsportlet_WAR_scolarissearchresults:portletRefreshed',function(){scolaris.reporting.searchResultsRefreshed();});window.tracking=(function(events){return{trackEvent:function(eventName,eventData,callback){var debugMode=JSON.parse(localStorage.getItem('readcube-console-log'));if(debugMode<=2){console.log('ReadCube eventName: ',eventName);console.log('ReadCube eventData: ',eventData);console.log('ReadCube callback: ',callback);}
+var doi=$('meta[name="dc.identifier"][scheme="DOI"], meta[name="DOI"]').attr('content');if(eventName==='readcube.ecommerce.complete'){scolaris.reporting.send(events.ppv,{doi:doi,click:false,licenseId:eventData.user.id});}
+if(eventName==='readcube.webviewer.fullview'||eventName==='readcube.webviewer.fullview.ppv'||eventName==='readcube.access.fulltext'||eventName==='readcube.access.fulltext.ppv'){var url=location.href;var pdfEventType;if(url.includes('/full')){pdfEventType=events.fulltextpdfreg;}
+else if(url.includes('/standard')){pdfEventType=events.fulltextpdfstandard;}
+else if(url.includes('/abstract')){pdfEventType=events.fulltextpdfabstract;}
+scolaris.reporting.send(pdfEventType,{doi:doi});}
+if(eventName==='readcube.webviewer.preview'||eventName==='readcube.access.preview'){scolaris.reporting.send(events.deniednolicense,{doi:doi});}
+if(typeof callback==='function'){callback();}}};})(scolaris.reportingEvents);

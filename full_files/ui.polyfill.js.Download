@@ -1,0 +1,4 @@
+if(!String.prototype.includes){String.prototype.includes=function(search,start){'use strict';if(typeof start!=='number'){start=0;}
+if(start+search.length>this.length){return false;}else{return this.indexOf(search,start)!==-1;}};}
+if(typeof String.prototype.endsWith!=='function'){String.prototype.endsWith=function(suffix){return this.indexOf(suffix,this.length-suffix.length)!==-1;};}
+function difference(base,object){return _.transform(object,function(result,value,key){if(!_.isEqual(value,base[key])){result[key]=(_.isObject(value)&&_.isObject(base[key]))?difference(base[key],value):value;}});}
